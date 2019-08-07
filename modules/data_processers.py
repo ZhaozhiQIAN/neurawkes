@@ -19,7 +19,7 @@ from collections import defaultdict
 from theano.tensor.shared_randomstreams import RandomStreams
 import struct
 
-import utils
+from . import utils
 
 
 dtype=theano.config.floatX
@@ -48,7 +48,7 @@ class DataProcesser(object):
             'dev': [], 'devtest': [], 'test': []
         }
         for tag_split in self.to_read:
-            print("reading data for tag : ", tag_split)
+            print(("reading data for tag : ", tag_split))
             path_to_read = self.path_rawdata + '/' + tag_split + '.pkl'
             with open(path_to_read, 'rb') as f:
                 u = pickle._Unpickler(f)
@@ -88,10 +88,10 @@ class DataProcesser(object):
             'test': len(self.data['test'])
         }
         self.list_idx = {
-            'train': range(self.lens['train']),
-            'dev': range(self.lens['dev']),
-            'devtest': range(self.lens['devtest']),
-            'test': range(self.lens['test'])
+            'train': list(range(self.lens['train'])),
+            'dev': list(range(self.lens['dev'])),
+            'devtest': list(range(self.lens['devtest'])),
+            'test': list(range(self.lens['test']))
         }
         # chop the data
         # computing max num of batches for all data ...
@@ -136,12 +136,12 @@ class DataProcesser(object):
             'devtest': len(self.data['devtest']),
             'test': len(self.data['test'])
         }
-        print("lens : ", self.lens)
+        print(("lens : ", self.lens))
         self.list_idx = {
-            'train': range(self.lens['train']),
-            'dev': range(self.lens['dev']),
-            'devtest': range(self.lens['devtest']),
-            'test': range(self.lens['test'])
+            'train': list(range(self.lens['train'])),
+            'dev': list(range(self.lens['dev'])),
+            'devtest': list(range(self.lens['devtest'])),
+            'test': list(range(self.lens['test']))
         }
         # chop the data
         # computing max num of batches for all data ...
@@ -162,7 +162,7 @@ class DataProcesser(object):
         get its 32-bit representations
         '''
         float32_input = numpy.float32(float_input)
-        str_input = ''.join(bin(ord(c)).replace('0b', '').rjust(8, '0') for c in struct.pack('!f', float32_input))
+        str_input = ''.join(bin(c).replace('0b', '').rjust(8, '0') for c in struct.pack('!f', float32_input))
         bit_input = numpy.zeros(
             (self.dim_float,), dtype=dtype
         )
@@ -215,7 +215,7 @@ class DataProcesser(object):
             if bin_str[self.dim_process-idx_process-1] == '0':
                 self.list_to_keep.append(idx_process)
         #
-        print("discarding except : ", self.list_to_keep)
+        print(("discarding except : ", self.list_to_keep))
         data_temp = self.data
         #print("keys of data_temp is : ", data_temp.keys())
         self.data = {}
