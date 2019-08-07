@@ -131,7 +131,7 @@ def main():
         'min_len': args.MinLen,
         'max_len': args.MaxLen
     }
-    #print settings_gen_seqs
+    #print(settings_gen_seqs)
     #
     flag_1 = (
         args.ModelGen == 'hawkes' or args.ModelGen == 'hawkesinhib' or args.ModelGen == 'neural' or args.ModelGen == 'neuralgeneral' or args.ModelGen == 'fst' or args.ModelGen == 'neuraladapt'
@@ -174,7 +174,7 @@ def main():
     #elif args.ModelGen == 'fst':
     #    gen_model = seq_gens.FSTGen(settings_gen)
     else:
-        print "Generator NOT implemented : ", args.ModelGen
+        print("Generator NOT implemented : ", args.ModelGen)
     #
     #
     if args.SetParams:
@@ -182,23 +182,23 @@ def main():
         args.DimProcess = gen_model.dim_process
     #
     ## show values ##
-    print ("PID is : %s" % str(id_process) )
-    print ("TIME is : %s" % time_current )
-    print ("Seed is : %s" % str(args.Seed) )
-    print ("FilePretrain is : %s" % args.FilePretrain)
-    print ("Generator is : %s" % args.ModelGen )
-    print ("SetParams is : %s" % args.SetParams )
-    print ("FileSave is : %s" % file_save )
-    print ("FileModel is : %s" % file_model )
-    print ("DimProcess is : %s" % str(args.DimProcess) )
+    print(("PID is : %s" % str(id_process) ))
+    print(("TIME is : %s" % time_current ))
+    print(("Seed is : %s" % str(args.Seed) ))
+    print(("FilePretrain is : %s" % args.FilePretrain))
+    print(("Generator is : %s" % args.ModelGen ))
+    print(("SetParams is : %s" % args.SetParams ))
+    print(("FileSave is : %s" % file_save ))
+    print(("FileModel is : %s" % file_model ))
+    print(("DimProcess is : %s" % str(args.DimProcess) ))
     if 'neural' in args.ModelGen or 'conttime' in args.ModelGen:
-        print ("DimLSTM is : %s" % str(args.DimLSTM) )
+        print(("DimLSTM is : %s" % str(args.DimLSTM) ))
     #if 'fst' in args.ModelGen:
-    #    print ("DimStates is : %s" % str(args.DimStates) )
-    print ("NumSeqs is : %s" % str(args.NumSeqs) )
-    print ("MinLen is : %s" % str(args.MinLen) )
-    print ("MaxLen is : %s" % str(args.MaxLen) )
-    print ("SumForTime is : %s" % str(args.SumForTime) )
+    #    print(("DimStates is : %s" % str(args.DimStates) ))
+    print(("NumSeqs is : %s" % str(args.NumSeqs) ))
+    print(("MinLen is : %s" % str(args.MinLen) ))
+    print(("MaxLen is : %s" % str(args.MaxLen) ))
+    print(("SumForTime is : %s" % str(args.SumForTime) ))
     #
     #
     dict_args = {
@@ -224,7 +224,7 @@ def main():
     cut_train = numpy.int32(8000)
     cut_dev = numpy.int32(9000)
     cut_test = numpy.int32(10000)
-    print "The cut off for training, dev, test and test1 are : ", (cut_train, cut_dev, cut_test, args.NumSeqs)
+    print("The cut off for training, dev, test and test1 are : ", (cut_train, cut_dev, cut_test, args.NumSeqs))
     #
     #
     time_0 = time.time()
@@ -247,11 +247,11 @@ def main():
         'args': dict_args
     }
     #
-    print "saving ... "
+    print("saving ... ")
     with open(file_save, 'wb') as f:
         pickle.dump(dict_data, f)
 
-    print "finished ! Took {} seconds !!!".format(str(round(dtime,2)))
+    print("finished ! Took {} seconds !!!".format(str(round(dtime,2))))
     #
 
 if __name__ == "__main__": main()

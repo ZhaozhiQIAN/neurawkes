@@ -120,7 +120,7 @@ class ComputeConfidenceInterval(object):
                 )
             )
             if idx_bootstrap % 100 == 99 :
-                print "in bootstrapping, the step is out of ", idx_bootstrap, self.num_bootstrap
+                print("in bootstrapping, the step is out of ", idx_bootstrap, self.num_bootstrap)
         list_log_likelihood_seq.sort()
         list_log_likelihood_type.sort()
         list_log_likelihood_time.sort()
@@ -172,23 +172,23 @@ class ComputeConfidenceInterval(object):
         )
         high_time = round(high_time, 4)
         #
-        print "First print original results for sanity-check : "
-        print self.dict_results['log_likelihood']
+        print("First print original results for sanity-check : ")
+        print(self.dict_results['log_likelihood'])
         #
-        print "Here is the results of bootstrapping : "
-        print "the confidence level is : ", self.confidence_level
-        print "for the seq, i.e., both type and time : "
-        print "the mean is : ", mean_seq
-        print "the interval is : (" + str(low_seq) + ',' + str(high_seq) + ') '
-        print "the combo is : (" + str(low_seq) + ',' + str(mean_seq) + ',' + str(high_seq) + ')'
-        print "for the type : "
-        print "the mean is : ", mean_type
-        print "the interval is : (" + str(low_type) + ',' + str(high_type) + ') '
-        print "the combo is : (" + str(low_type) + ',' + str(mean_type) + ',' + str(high_type) + ') '
-        print "for the time : "
-        print "the mean is : ", mean_time
-        print "the interval is : (" + str(low_time) + ',' + str(high_time) + ') '
-        print "the combo is : (" + str(low_time) + ',' + str(mean_time) + ',' + str(high_time) + ') '
+        print("Here is the results of bootstrapping : ")
+        print("the confidence level is : ", self.confidence_level)
+        print("for the seq, i.e., both type and time : ")
+        print("the mean is : ", mean_seq)
+        print("the interval is : (" + str(low_seq) + ',' + str(high_seq) + ') ')
+        print("the combo is : (" + str(low_seq) + ',' + str(mean_seq) + ',' + str(high_seq) + ')')
+        print("for the type : ")
+        print("the mean is : ", mean_type)
+        print("the interval is : (" + str(low_type) + ',' + str(high_type) + ') ')
+        print("the combo is : (" + str(low_type) + ',' + str(mean_type) + ',' + str(high_type) + ') ')
+        print("for the time : ")
+        print("the mean is : ", mean_time)
+        print("the interval is : (" + str(low_time) + ',' + str(high_time) + ') ')
+        print("the combo is : (" + str(low_time) + ',' + str(mean_time) + ',' + str(high_time) + ') ')
         #
         #TODO: save the boostrap results into results dict
         dict_bootstrap = {
@@ -205,11 +205,11 @@ class ComputeConfidenceInterval(object):
         }
         self.dict_results['bootstrap'] = dict_bootstrap
         #
-        print "saving into result pickle ... "
+        print("saving into result pickle ... ")
         with open(self.path_to_results, 'wb') as f:
             pickle.dump(self.dict_results, f)
         #
-        print "finished bootstrapping "
+        print("finished bootstrapping ")
         #
         #
     #
@@ -341,14 +341,14 @@ class ComputeConfidenceInterval(object):
             'mean_2': mean_ratios_2
         }
         #
-        print "for this trial : "
-        print "model is : ", self.dict_results['model']
-        print "model gold is : ", self.dict_results['model_gold']
-        print "for total intensity : "
-        print "MSE/VAR and VAR/AVG^2 are : ", mean_ratios_total, mean_ratios_2_total
+        print("for this trial : ")
+        print("model is : ", self.dict_results['model'])
+        print("model gold is : ", self.dict_results['model_gold'])
+        print("for total intensity : ")
+        print("MSE/VAR and VAR/AVG^2 are : ", mean_ratios_total, mean_ratios_2_total)
         #TODO: predict individual results
-        #print "for all types , means are : ", mean_ratios
-        #print "real variance/square_mean : ", mean_ratios_2
+        #print("for all types , means are : ", mean_ratios)
+        #print("real variance/square_mean : ", mean_ratios_2)
         #
         mean_mean = 0.0
         #
@@ -365,22 +365,22 @@ class ComputeConfidenceInterval(object):
             low = round(low, 6)
             high = round(high, 6)
             #TODO: predict individual results
-            #print "for type : ", str(k+1)
-            #print "C.I. is : ("+str(low)+','+str(round(mean_ratios[k],6))+','+str(high)+')'
+            #print("for type : ", str(k+1))
+            #print("C.I. is : ("+str(low)+','+str(round(mean_ratios[k],6))+','+str(high)+')')
             dict_bootstrap['type_'+str(k+1)] = {
                 'low': low, 'mean': mean_ratios[k], 'high': high
             }
             mean_mean +=  mean_ratios[k]
         mean_mean /= 1.0*ratios.shape[1]
         #
-        print "Mean over K types : "
-        print "MSE/Var : ", round(numpy.mean(mean_ratios), 6)
-        print "Var/AVG^2 : ", round(numpy.mean(mean_ratios_2), 6)
+        print("Mean over K types : ")
+        print("MSE/Var : ", round(numpy.mean(mean_ratios), 6))
+        print("Var/AVG^2 : ", round(numpy.mean(mean_ratios_2), 6))
         #
-        print "saving into result pickle ... "
+        print("saving into result pickle ... ")
         with open(self.path_to_results, 'wb') as f:
             pickle.dump(self.dict_results, f)
-        print "finish bootstrapping for intensity eval"
+        print("finish bootstrapping for intensity eval")
     #
     #
     #
@@ -441,14 +441,14 @@ class PermutationTest(object):
             shot_new = numpy.abs(
                 numpy.mean(diff_array_temp)
             )
-            #print "threshold is : ", threshold
-            #print "shot is : ", shot_new
+            #print("threshold is : ", threshold)
+            #print("shot is : ", shot_new)
             if shot_new >= threshold:
                 cnt += 1.0
             #'''
-        print "cnt is : ", cnt
+        print("cnt is : ", cnt)
         value_p = 1.0 * cnt / self.num_permuation
-        print "p value is : ", value_p
+        print("p value is : ", value_p)
         return value_p
     #
     def compute_p_2(self):
@@ -474,9 +474,9 @@ class PermutationTest(object):
             shot_new = numpy.abs(numpy.mean(diff_array))
             if shot_new >= threshold:
                 cnt += 1.0
-        print "cnt is : ", cnt
+        print("cnt is : ", cnt)
         value_p = 1.0 * cnt / self.num_permuation
-        print "p value is : ", value_p
+        print("p value is : ", value_p)
         return value_p
     #
     def save_csv(self):
@@ -494,18 +494,18 @@ class PermutationTest(object):
                     'm0': round(i_0, 4),
                     'm1': round(i_1, 4)
                 }
-                #print dict_temp
+                #print(dict_temp)
                 writer_csv.writerow(
                     dict_temp
                 )
-        print "done ! "
+        print("done ! ")
     #
     #
     def pair_perm_test_DW(self, x, y, num_samples=99999):
         # Code borrowed from Dingquan Wang
         x, y = map(numpy.array, [x, y])
         d = x - y
-        #print d
+        #print(d)
         dim = len(d)
         m0 = numpy.mean(d)
         permutation = (
@@ -578,51 +578,51 @@ class PermutationTest(object):
             diff_max = numpy.max(diff_vec)
             diff_min = numpy.min(diff_vec)
             #
-            print "For this tag : ", tag_current
-            #print "Here is some statistics about the diff : "
-            #print "mean is : ", diff_mean
-            #print "std is : ", diff_std
-            #print "max is : ", diff_max
-            #print "min is : ", diff_min
-            #print "How many 0 >= 1 : "
-            #print sum(self.array_0 >= self.array_1 )
-            #print "How many 0 < 1 : "
-            #print sum(self.array_1 >= self.array_0 )
-            #print "mean and std for 0 is : ", numpy.mean(self.array_0), numpy.std(self.array_0)
-            #print "mean and std for 1 is : ", numpy.mean(self.array_1), numpy.std(self.array_1)
-            print "the p value for this tag is : "
-            #print tag_current
-            print str(dict_p[tag_current])
+            print("For this tag : ", tag_current)
+            #print("Here is some statistics about the diff : ")
+            #print("mean is : ", diff_mean)
+            #print("std is : ", diff_std)
+            #print("max is : ", diff_max)
+            #print("min is : ", diff_min)
+            #print("How many 0 >= 1 : ")
+            #print(sum(self.array_0 >= self.array_1 ))
+            #print("How many 0 < 1 : ")
+            #print(sum(self.array_1 >= self.array_0 ))
+            #print("mean and std for 0 is : ", numpy.mean(self.array_0), numpy.std(self.array_0))
+            #print("mean and std for 1 is : ", numpy.mean(self.array_1), numpy.std(self.array_1))
+            print("the p value for this tag is : ")
+            #print(tag_current)
+            print(str(dict_p[tag_current]))
         #
-        print "The values of P in order of seq/type/time : "
-        print str(dict_p['log_likelihood_seq']) + ' / ' + str(dict_p['log_likelihood_type']) + ' / ' + str(dict_p['log_likelihood_time'])
+        print("The values of P in order of seq/type/time : ")
+        print(str(dict_p['log_likelihood_seq']) + ' / ' + str(dict_p['log_likelihood_type']) + ' / ' + str(dict_p['log_likelihood_time']))
         #
-        print "Finished permuation test "
+        print("Finished permuation test ")
         #
         #
         '''
-        print "total, seq, type, time : "
-        print self.num_permuation, cnt_seq, cnt_type, cnt_time
+        print("total, seq, type, time : ")
+        print(self.num_permuation, cnt_seq, cnt_type, cnt_time)
         #
         p_seq = round(cnt_seq/(1.0*self.num_permuation), 4)
         p_type = round(cnt_type/(1.0*self.num_permuation), 4)
         p_time = round(cnt_time/(1.0*self.num_permuation), 4)
         #
         #
-        print "How many 0 >= 1 : "
-        print sum(array_log_likelihood_seq_0 >= array_log_likelihood_seq_1)
-        print "How many 0 < 1 : "
-        print sum(array_log_likelihood_seq_0 < array_log_likelihood_seq_1)
+        print("How many 0 >= 1 : ")
+        print(sum(array_log_likelihood_seq_0 >= array_log_likelihood_seq_1))
+        print("How many 0 < 1 : ")
+        print(sum(array_log_likelihood_seq_0 < array_log_likelihood_seq_1))
         #
         #
-        print "Here is the results of permutation test : "
-        print "The two results files are : "
-        print self.path_0
-        print self.path_1
-        print "The values of P in order of seq / type / time : "
-        print str(p_seq) + ' / ' + str(p_type) + ' / ' + str(p_time)
+        print("Here is the results of permutation test : ")
+        print("The two results files are : ")
+        print(self.path_0)
+        print(self.path_1)
+        print("The values of P in order of seq / type / time : ")
+        print(str(p_seq) + ' / ' + str(p_type) + ' / ' + str(p_time))
         #
-        print "Finished permuation test "
+        print("Finished permuation test ")
         #
         '''
         #

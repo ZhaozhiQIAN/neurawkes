@@ -90,13 +90,13 @@ def main():
     time_current = datetime.datetime.now().isoformat()
     #
     ## show values ##
-    print ("PID is : %s" % str(id_process) )
-    print ("TIME is : %s" % time_current )
-    print ("Seed is : %s" % str(args.Seed) )
-    print ("FileResults is : %s" % args.FileResults )
-    print ("Confidence Level is : %s" % str(args.ConfidenceLevel) )
-    print ("Num of Bootstrapping is : %s" % str(args.NumBootstrap))
-    print ("Predict Lambda is : %s" % args.PredictLambda)
+    print(("PID is : %s" % str(id_process) ))
+    print(("TIME is : %s" % time_current ))
+    print(("Seed is : %s" % str(args.Seed) ))
+    print(("FileResults is : %s" % args.FileResults ))
+    print(("Confidence Level is : %s" % str(args.ConfidenceLevel) ))
+    print(("Num of Bootstrapping is : %s" % str(args.NumBootstrap)))
+    print(("Predict Lambda is : %s" % args.PredictLambda))
     #
     #
     dict_args = {

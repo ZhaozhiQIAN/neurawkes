@@ -26,7 +26,7 @@ dtype=theano.config.floatX
 class LogOrg(object):
     #
     def __init__(self, settings):
-        print "log files organizer ... "
+        print("log files organizer ... ")
         self.path_tracks = settings['path_tracks']
         if self.path_tracks == None:
             self.path_tracks = os.path.abspath(
@@ -45,8 +45,8 @@ class LogOrg(object):
             str_log = f.read()
         #
         if 'The best model info is' not in str_log:
-            print "Here is a unfinished training : "
-            print path_log
+            print("Here is a unfinished training : ")
+            print(path_log)
             #TODO: the training is not finished
             #so we can grab the best info as the current best
             segment_args = str_log.split(
@@ -76,15 +76,15 @@ class LogOrg(object):
             segment_best = str_log.split(
                 'The best model info is shown below : '
             )[-1]
-            #print segment_args
-            #print segment_best
+            #print(segment_args)
+            #print(segment_best)
         dict_args = {}
         dict_args['PathTrack'] = os.path.dirname(path_log)
         #
         lines_args = segment_args.split('\n')
         for line in lines_args:
             if line != '\n' and line != '':
-                #print line
+                #print(line)
                 list_line = line.split(' : ')
                 assert(len(list_line)==2 )
                 dict_args[list_line[0]] = list_line[-1]
@@ -92,11 +92,11 @@ class LogOrg(object):
         lines_best = segment_best.split('\n')
         for line in lines_best:
             if line != '\n' and line != '' and 'dev_' in line:
-                #print line
+                #print(line)
                 list_line = line.split(' is ')
-                #print path_log
-                #print list_line
-                #print segment_best
+                #print(path_log)
+                #print(list_line)
+                #print(segment_best)
                 assert(len(list_line)==2 )
                 dict_args[list_line[0]] = list_line[-1]
         #
@@ -106,7 +106,7 @@ class LogOrg(object):
     def read_logs(self):
         self.list_logs = []
         #
-        print "reading and parsing all the log files ... "
+        print("reading and parsing all the log files ... ")
         #
         for path, dirs, files in os.walk(self.path_tracks):
             for name_file in fnmatch.filter(files, 'log.txt'):
@@ -120,12 +120,12 @@ class LogOrg(object):
                 #
             #
         #
-        print "done ! "
+        print("done ! ")
         #
     #
     #
     def get_one_log(self, idx_log=0):
-        print "getting one log idx : ", idx_log
+        print("getting one log idx : ", idx_log)
         assert(len(self.list_logs)>0 )
         #path_save = os.path.abspath(path_save)
         #path_save = path_save + '/' + 'logs.csv'
@@ -133,7 +133,7 @@ class LogOrg(object):
         return dict_args
     #
     def save_csv(self, path_save):
-        print "saving logs into a csv ... "
+        print("saving logs into a csv ... ")
         assert(len(self.list_logs)>0 )
         path_save = os.path.abspath(path_save)
         #path_save = path_save + '/' + 'logs.csv'
@@ -155,7 +155,7 @@ class LogOrg(object):
                     dict_args
                 )
             #
-        print "done ! "
+        print("done ! ")
         #
     #
 #

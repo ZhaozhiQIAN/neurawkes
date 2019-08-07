@@ -39,7 +39,7 @@ class HawkesGen(object):
         numpy.random.seed(
             settings['seed_random']
         )
-        print "initializing ... "
+        print("initializing ... ")
         if settings['path_pre_train'] == None:
             self.dim_process = settings['dim_process']
             self.mu = numpy.float32(
@@ -77,11 +77,11 @@ class HawkesGen(object):
         self.one_seq = []
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq))
-        print "done "
+        print("done ")
         #
     #
     def set_params(self):
-        print "set the params for missing data experiments ... "
+        print("set the params for missing data experiments ... ")
         self.dim_process = numpy.int32(4)
         self.mu = numpy.float32(
             numpy.ones((self.dim_process, ))
@@ -112,7 +112,7 @@ class HawkesGen(object):
     #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'mu': numpy.copy(self.mu),
             'alpha': numpy.copy(self.alpha),
@@ -304,7 +304,7 @@ class HawkesGen(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
+        #print(settings)
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -325,14 +325,14 @@ class HawkesGen(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -354,12 +354,12 @@ class HawkesGen(object):
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
@@ -379,7 +379,7 @@ class HawkesInhibGen(object):
         delta is the decay matrix
         we randomly sample mu, alpha, delta
         '''
-        print "initializing ... "
+        print("initializing ... ")
         self.args = settings['args']
         self.sum_for_time = settings['sum_for_time']
         numpy.random.seed(
@@ -433,7 +433,7 @@ class HawkesInhibGen(object):
         self.one_seq = []
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq))
-        print "done "
+        print("done ")
         #
         #
     #
@@ -450,7 +450,7 @@ class HawkesInhibGen(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'mu': numpy.copy(self.mu),
             'alpha': numpy.copy(self.alpha),
@@ -675,7 +675,7 @@ class HawkesInhibGen(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
+        #print(settings)
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -696,14 +696,14 @@ class HawkesInhibGen(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -725,12 +725,12 @@ class HawkesInhibGen(object):
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
@@ -745,12 +745,12 @@ class NeuralHawkesCTLSTM(object):
     '''
     def __init__(self, settings):
         #
-        print "initializing generator ... "
+        print("initializing generator ... ")
         self.args = settings['args']
         self.sum_for_time = settings['sum_for_time']
         self.dim_float = numpy.int32(32)
         if settings['path_pre_train'] == None:
-            print "random parameters ... "
+            print("random parameters ... ")
             self.dim_process = settings['dim_process']
             self.dim_model = settings['dim_LSTM']
             self.dim_time = self.dim_float
@@ -804,7 +804,7 @@ class NeuralHawkesCTLSTM(object):
                 )
             )
         else:
-            print "read pretrained model ... "
+            print("read pretrained model ... ")
             path_pre_train = os.path.abspath(
                 settings['path_pre_train']
             )
@@ -858,7 +858,7 @@ class NeuralHawkesCTLSTM(object):
         )
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq) )
-        print "initialization done "
+        print("initialization done ")
         #
     #
     def set_args(self, dict_args):
@@ -879,7 +879,7 @@ class NeuralHawkesCTLSTM(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'scale': numpy.copy(self.scale),
             'W_alpha': numpy.copy(self.W_alpha),
@@ -1123,25 +1123,25 @@ class NeuralHawkesCTLSTM(object):
         #
         u = 1.5
         while u >= 1.0:
-            #print "type is : ", type_event
+            #print("type is : ", type_event)
             E = numpy.random.exponential(
                 scale=1.0, size=None
             )
             U = numpy.random.uniform(
                 low=0.0, high=1.0, size=None
             )
-            #print "E U time_current : "
-            #print E, U, time_current
-            #print "intensity hazard is : "
-            #print intensity_hazard
+            #print("E U time_current : ")
+            #print(E, U, time_current)
+            #print("intensity hazard is : ")
+            #print(intensity_hazard)
             time_current += (E / intensity_hazard)
             self.compute_intensity_given_past(time_current)
             u = U * intensity_hazard / self.intensity[type_event]
-            #print "new time_current and u : "
-            #print time_current, u
-            #print "intensity and upper bound is : "
-            #print self.intensity
-            #print self.intensity_ub
+            #print("new time_current and u : ")
+            #print(time_current, u)
+            #print("intensity and upper bound is : ")
+            #print(self.intensity)
+            #print(self.intensity_ub)
             # use adaptive thinning algorithm
             # that is, decreasing the upper bound
             # to make the sampling quicker
@@ -1172,25 +1172,25 @@ class NeuralHawkesCTLSTM(object):
         #
         u = 1.5
         while u >= 1.0:
-            #print "type is : ", type_event
+            #print("type is : ", type_event)
             E = numpy.random.exponential(
                 scale=1.0, size=None
             )
             U = numpy.random.uniform(
                 low=0.0, high=1.0, size=None
             )
-            #print "E U time_current : "
-            #print E, U, time_current
-            #print "intensity hazard is : "
-            #print intensity_hazard
+            #print("E U time_current : ")
+            #print(E, U, time_current)
+            #print("intensity hazard is : ")
+            #print(intensity_hazard)
             time_current += (E / intensity_hazard)
             self.compute_intensity_given_past(time_current)
             u = U * intensity_hazard / numpy.sum(self.intensity)
-            #print "new time_current and u : "
-            #print time_current, u
-            #print "intensity and upper bound is : "
-            #print self.intensity
-            #print self.intensity_ub
+            #print("new time_current and u : ")
+            #print(time_current, u)
+            #print("intensity and upper bound is : ")
+            #print(self.intensity)
+            #print(self.intensity_ub)
             # use adaptive thinning algorithm
             # that is, decreasing the upper bound
             # to make the sampling quicker
@@ -1288,8 +1288,8 @@ class NeuralHawkesCTLSTM(object):
     #
     #
     def gen_seqs(self, settings):
-        #print settings
-        print "generating sequences ... "
+        #print(settings)
+        print("generating sequences ... ")
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -1310,14 +1310,14 @@ class NeuralHawkesCTLSTM(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -1339,12 +1339,12 @@ class NeuralHawkesCTLSTM(object):
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
@@ -1479,7 +1479,7 @@ class NeuralHawkesGen(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'mu': numpy.copy(self.mu),
             'delta': numpy.copy(self.delta),
@@ -1731,7 +1731,7 @@ class NeuralHawkesGen(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
+        #print(settings)
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -1752,14 +1752,14 @@ class NeuralHawkesGen(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events, list_time = [], []
             for event_item in seq:
@@ -1767,8 +1767,8 @@ class NeuralHawkesGen(object):
                 list_time.append(
                     round(event_item['time_since_start'], 4)
                 )
-            print list_events
-            print list_time
+            print(list_events)
+            print(list_time)
     #
     def save_seqs(self, file_save):
         with open(file_save, 'wb') as f:
@@ -1891,7 +1891,7 @@ class GeneralizedNeuralHawkesGen(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'mu': numpy.copy(self.mu),
             'W_delta': numpy.copy(self.W_delta),
@@ -2154,7 +2154,7 @@ class GeneralizedNeuralHawkesGen(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
+        #print(settings)
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -2175,14 +2175,14 @@ class GeneralizedNeuralHawkesGen(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events, list_time = [], []
             for event_item in seq:
@@ -2190,8 +2190,8 @@ class GeneralizedNeuralHawkesGen(object):
                 list_time.append(
                     round(event_item['time_since_start'], 4)
                 )
-            print list_events
-            print list_time
+            print(list_events)
+            print(list_time)
     #
     def save_seqs(self, file_save):
         with open(file_save, 'wb') as f:
@@ -2315,7 +2315,7 @@ class NeuralHawkesAdaptiveBaseGen(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'W_mu': numpy.copy(self.W_mu),
             'W_delta': numpy.copy(self.W_delta),
@@ -2584,7 +2584,7 @@ class NeuralHawkesAdaptiveBaseGen(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
+        #print(settings)
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -2605,14 +2605,14 @@ class NeuralHawkesAdaptiveBaseGen(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events, list_time = [], []
             for event_item in seq:
@@ -2620,8 +2620,8 @@ class NeuralHawkesAdaptiveBaseGen(object):
                 list_time.append(
                     round(event_item['time_since_start'], 4)
                 )
-            print list_events
-            print list_time
+            print(list_events)
+            print(list_time)
     #
     def save_seqs(self, file_save):
         with open(file_save, 'wb') as f:
@@ -2634,11 +2634,11 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
     '''
     def __init__(self, settings):
         #
-        print "initializing generator ... "
+        print("initializing generator ... ")
         self.args = settings['args']
         self.dim_float = numpy.int32(32)
         if settings['path_pre_train'] == None:
-            print "random parameters ... "
+            print("random parameters ... ")
             self.dim_process = settings['dim_process']
             self.dim_model = settings['dim_LSTM']
             #
@@ -2716,7 +2716,7 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
                 )
             )
         else:
-            print "read pretrained model ... "
+            print("read pretrained model ... ")
             path_pre_train = os.path.abspath(
                 settings['path_pre_train']
             )
@@ -2764,7 +2764,7 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
         )
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq))
-        print "initialization done "
+        print("initialization done ")
         #
     #
     def soft_relu(self, x):
@@ -2775,7 +2775,7 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'W_mu': numpy.copy(self.W_mu),
             'W_delta': numpy.copy(self.W_delta),
@@ -2985,25 +2985,25 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
         #
         u = 1.5
         while u >= 1.0:
-            #print "type is : ", type_event
+            #print("type is : ", type_event)
             E = numpy.random.exponential(
                 scale=1.0, size=None
             )
             U = numpy.random.uniform(
                 low=0.0, high=1.0, size=None
             )
-            #print "E U time_current : "
-            #print E, U, time_current
-            #print "intensity hazard is : "
-            #print intensity_hazard
+            #print("E U time_current : ")
+            #print(E, U, time_current)
+            #print("intensity hazard is : ")
+            #print(intensity_hazard)
             time_current += (E / intensity_hazard)
             self.compute_intensity_given_past(time_current)
             u = U * intensity_hazard / self.intensity[type_event]
-            #print "new time_current and u : "
-            #print time_current, u
-            #print "intensity and upper bound is : "
-            #print self.intensity
-            #print self.intensity_ub
+            #print("new time_current and u : ")
+            #print(time_current, u)
+            #print("intensity and upper bound is : ")
+            #print(self.intensity)
+            #print(self.intensity_ub)
             # use adaptive thinning algorithm
             # that is, decreasing the upper bound
             # to make the sampling quicker
@@ -3078,8 +3078,8 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
-        print "generating sequences ... "
+        #print(settings)
+        print("generating sequences ... ")
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -3100,14 +3100,14 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -3129,12 +3129,12 @@ class NeuralHawkesAdaptiveBaseGen_time(object):
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
@@ -3149,11 +3149,11 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
     '''
     def __init__(self, settings):
         #
-        print "initializing generator ... "
+        print("initializing generator ... ")
         self.args = settings['args']
         self.dim_float = numpy.int32(32)
         if settings['path_pre_train'] == None:
-            print "random parameters ... "
+            print("random parameters ... ")
             self.dim_process = settings['dim_process']
             self.dim_model = settings['dim_LSTM']
             self.dim_time = self.dim_float
@@ -3242,7 +3242,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
                 )
             )
         else:
-            print "read pretrained model ... "
+            print("read pretrained model ... ")
             path_pre_train = os.path.abspath(
                 settings['path_pre_train']
             )
@@ -3291,7 +3291,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
         )
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq))
-        print "initialization done "
+        print("initialization done ")
         #
     #
     def soft_relu(self, x):
@@ -3309,7 +3309,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'scale': numpy.copy(self.scale),
             'W_mu': numpy.copy(self.W_mu),
@@ -3520,25 +3520,25 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
         #
         u = 1.5
         while u >= 1.0:
-            #print "type is : ", type_event
+            #print("type is : ", type_event)
             E = numpy.random.exponential(
                 scale=1.0, size=None
             )
             U = numpy.random.uniform(
                 low=0.0, high=1.0, size=None
             )
-            #print "E U time_current : "
-            #print E, U, time_current
-            #print "intensity hazard is : "
-            #print intensity_hazard
+            #print("E U time_current : ")
+            #print(E, U, time_current)
+            #print("intensity hazard is : ")
+            #print(intensity_hazard)
             time_current += (E / intensity_hazard)
             self.compute_intensity_given_past(time_current)
             u = U * intensity_hazard / self.intensity[type_event]
-            #print "new time_current and u : "
-            #print time_current, u
-            #print "intensity and upper bound is : "
-            #print self.intensity
-            #print self.intensity_ub
+            #print("new time_current and u : ")
+            #print(time_current, u)
+            #print("intensity and upper bound is : ")
+            #print(self.intensity)
+            #print(self.intensity_ub)
             # use adaptive thinning algorithm
             # that is, decreasing the upper bound
             # to make the sampling quicker
@@ -3615,8 +3615,8 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
     #
     def gen_seqs(self, settings):
         #
-        #print settings
-        print "generating sequences ... "
+        #print(settings)
+        print("generating sequences ... ")
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -3637,14 +3637,14 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -3666,12 +3666,12 @@ class NeuralHawkesAdaptiveBaseGen_time_scale(object):
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
@@ -3689,11 +3689,11 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
     '''
     def __init__(self, settings):
         #
-        print "initializing generator ... "
+        print("initializing generator ... ")
         self.args = settings['args']
         self.dim_float = numpy.int32(32)
         if settings['path_pre_train'] == None:
-            print "random parameters ... "
+            print("random parameters ... ")
             self.dim_process = settings['dim_process']
             self.dim_model = settings['dim_LSTM']
             self.dim_time = self.dim_float
@@ -3782,7 +3782,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
                 )
             )
         else:
-            print "read pretrained model ... "
+            print("read pretrained model ... ")
             path_pre_train = os.path.abspath(
                 settings['path_pre_train']
             )
@@ -3831,7 +3831,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
         )
         #self.flag_continue = True
         self.cnt_total_event = numpy.int32(len(self.one_seq) )
-        print "initialization done "
+        print("initialization done ")
         #
     #
     def soft_relu(self, x):
@@ -3849,7 +3849,7 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
         #
     #
     def save_model(self, file_save):
-        print "saving model of generator ... "
+        print("saving model of generator ... ")
         model_dict = {
             'scale': numpy.copy(self.scale),
             'W_mu': numpy.copy(self.W_mu),
@@ -4058,25 +4058,25 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
         #
         u = 1.5
         while u >= 1.0:
-            #print "type is : ", type_event
+            #print("type is : ", type_event)
             E = numpy.random.exponential(
                 scale=1.0, size=None
             )
             U = numpy.random.uniform(
                 low=0.0, high=1.0, size=None
             )
-            #print "E U time_current : "
-            #print E, U, time_current
-            #print "intensity hazard is : "
-            #print intensity_hazard
+            #print("E U time_current : ")
+            #print(E, U, time_current)
+            #print("intensity hazard is : ")
+            #print(intensity_hazard)
             time_current += (E / intensity_hazard)
             self.compute_intensity_given_past(time_current)
             u = U * intensity_hazard / self.intensity[type_event]
-            #print "new time_current and u : "
-            #print time_current, u
-            #print "intensity and upper bound is : "
-            #print self.intensity
-            #print self.intensity_ub
+            #print("new time_current and u : ")
+            #print(time_current, u)
+            #print("intensity and upper bound is : ")
+            #print(self.intensity)
+            #print(self.intensity_ub)
             # use adaptive thinning algorithm
             # that is, decreasing the upper bound
             # to make the sampling quicker
@@ -4153,8 +4153,8 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
     #
     def gen_seqs(self, settings):
         #
-        #print settings
-        print "generating sequences ... "
+        #print(settings)
+        print("generating sequences ... ")
         num_seqs = settings['num_seqs']
         #
         self.list_seqs = []
@@ -4175,14 +4175,14 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
             self.list_seqs.append(self.one_seq)
             cnt_seqs += 1
             if cnt_seqs % 10 == 9:
-                print "idx seq of gen : ", (cnt_seqs, self.name)
-                print "total number of seqs : ", num_seqs
+                print("idx seq of gen : ", (cnt_seqs, self.name))
+                print("total number of seqs : ", num_seqs)
     #
     #
     def print_some(self):
-        print "printing some seqs ... "
+        print("printing some seqs ... ")
         for idx_seq in range(10):
-            print "the id of this seq is : ", idx_seq
+            print("the id of this seq is : ", idx_seq)
             seq = self.list_seqs[idx_seq]
             list_events = []
             list_time = []
@@ -4204,12 +4204,12 @@ class NeuralHawkesAdaptiveBaseGen_time_scale_reduce(
                         )
                     )
                 )
-            print "the events, time and diff time for : ", idx_seq
-            print list_events
-            print list_time
-            print list_dtime
-            print "the list of items is : "
-            print list_items
+            print("the events, time and diff time for : ", idx_seq)
+            print(list_events)
+            print(list_time)
+            print(list_dtime)
+            print("the list of items is : ")
+            print(list_items)
     #
     #
     def save_seqs(self, file_save):
