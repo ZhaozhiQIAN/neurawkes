@@ -50,7 +50,7 @@ class HawkesGen(object):
             )
             self.alpha = numpy.float32(
                 numpy.random.uniform(
-                    low=0.0, high=1.0,
+                    low=10.0, high=20.0,
                     size=(self.dim_process, self.dim_process)
                 )
             )

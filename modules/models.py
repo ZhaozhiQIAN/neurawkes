@@ -239,9 +239,8 @@ class HawkesCTSM(object):
     ):
         '''
         use this function to compute intensity
-        seq_type_event : T * size_batch -- for each data
-        and each time step, tracks the type of event k_i
-        these are only used for computing intensity estimation
+        seq_type_event : T * size_batch -- for each data and each time step, tracks the type of event k_i
+            these are only used for computing intensity estimation
         N is the # of MonteCarlo samples
         seq_sims_time_to_current : N * T * size_batch -- for each batch, and at each time step t, track t_i-t_i' for t_i'<t_i
         seq_sims_mask : N * size_batch
@@ -412,10 +411,10 @@ class HawkesInhibCTSM_scale(object):
         use this function to compute negative log likelihood
         seq_time_to_end : T * size_batch -- T-t_i
         seq_time_to_current : T * T * size_batch --
-        for each batch, it is T * T, and at each time step t,
-        it tracks the ( t_i - t_i' ) for all t_i' < t_i
+            for each batch, it is T * T, and at each time step t,
+            it tracks the ( t_i - t_i' ) for all t_i' < t_i
         seq_type_event : T * size_batch -- for each data
-        and each time step, tracks the type of event k_i
+            and each time step, tracks the type of event k_i
         time_since_start_to_end : size_batch -- time for seq
         num_sims_start_to_end : size_batch -- N for each seq
         #
@@ -433,6 +432,7 @@ class HawkesInhibCTSM_scale(object):
             :, seq_type_event
         ] # dim_process * T * size_batch
         #
+        # integration term
         lambda_over_seq_sims_tilde = self.mu[:,None,None] + tensor.sum(
             (
                 seq_sims_mask_to_current[None,:,:,:] * (
