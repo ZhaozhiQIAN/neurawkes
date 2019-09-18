@@ -1,0 +1,1 @@
+python generate_sequences.py -m hawkes -sp 0 -s 42 -k 5 -N 5000 -min 5 -max 20
